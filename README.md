@@ -1,5 +1,5 @@
 # guohm
-郭红明
+
 
 
 livinglibrary为图书馆项目，sql是对应的数据库脚本，使用mysql数据库，版本8.0以上。Public文件夹我也不知到是啥，可能是一些公共文件的调用吧。貌似
@@ -9,7 +9,7 @@ livinglibrary为图书馆项目，sql是对应的数据库脚本，使用mysql�
 
 
 开发规范：
-    命名规范
+        命名规范
 	合理注释
 	脚本提交到脚本文件夹，脚本命名yyyy-mm-dd-序号.sql；
 	
