@@ -11,4 +11,4 @@ livinglibrary为图书馆项目，sql是对应的数据库脚本，使用mysql�
 	合理注释
 	脚本提交到脚本文件夹，脚本命名yyyy-mm-dd-序号.sql；
 	ddd
-   李贤嵘dddd
+   李贤嵘dddddd
