@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.dao.FoodtypeMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.entity.Foodtype" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="typeName" property="typename" jdbcType="VARCHAR" />
+    <result column="reserve1" property="reserve1" jdbcType="VARCHAR" />
+    <result column="reserve2" property="reserve2" jdbcType="VARCHAR" />
+    <result column="reserve3" property="reserve3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, typeName, reserve1, reserve2, reserve3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from foodtype
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from foodtype
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.Foodtype" >
+    insert into foodtype (id, typeName, reserve1, 
+      reserve2, reserve3)
+    values (#{id,jdbcType=INTEGER}, #{typename,jdbcType=VARCHAR}, #{reserve1,jdbcType=VARCHAR}, 
+      #{reserve2,jdbcType=VARCHAR}, #{reserve3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.Foodtype" >
+    insert into foodtype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="typename != null" >
+        typeName,
+      </if>
+      <if test="reserve1 != null" >
+        reserve1,
+      </if>
+      <if test="reserve2 != null" >
+        reserve2,
+      </if>
+      <if test="reserve3 != null" >
+        reserve3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typename != null" >
+        #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve1 != null" >
+        #{reserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve2 != null" >
+        #{reserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve3 != null" >
+        #{reserve3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.Foodtype" >
+    update foodtype
+    <set >
+      <if test="typename != null" >
+        typeName = #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve1 != null" >
+        reserve1 = #{reserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve2 != null" >
+        reserve2 = #{reserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve3 != null" >
+        reserve3 = #{reserve3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.Foodtype" >
+    update foodtype
+    set typeName = #{typename,jdbcType=VARCHAR},
+      reserve1 = #{reserve1,jdbcType=VARCHAR},
+      reserve2 = #{reserve2,jdbcType=VARCHAR},
+      reserve3 = #{reserve3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

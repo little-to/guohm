@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.dao.OrderdetailMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.entity.Orderdetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="orderId" property="orderid" jdbcType="INTEGER" />
+    <result column="food_id" property="foodId" jdbcType="INTEGER" />
+    <result column="foodCount" property="foodcount" jdbcType="INTEGER" />
+    <result column="reserve1" property="reserve1" jdbcType="VARCHAR" />
+    <result column="reserve2" property="reserve2" jdbcType="VARCHAR" />
+    <result column="reserve3" property="reserve3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, orderId, food_id, foodCount, reserve1, reserve2, reserve3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orderdetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orderdetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.Orderdetail" >
+    insert into orderdetail (id, orderId, food_id, 
+      foodCount, reserve1, reserve2, 
+      reserve3)
+    values (#{id,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{foodId,jdbcType=INTEGER}, 
+      #{foodcount,jdbcType=INTEGER}, #{reserve1,jdbcType=VARCHAR}, #{reserve2,jdbcType=VARCHAR}, 
+      #{reserve3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.Orderdetail" >
+    insert into orderdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="foodId != null" >
+        food_id,
+      </if>
+      <if test="foodcount != null" >
+        foodCount,
+      </if>
+      <if test="reserve1 != null" >
+        reserve1,
+      </if>
+      <if test="reserve2 != null" >
+        reserve2,
+      </if>
+      <if test="reserve3 != null" >
+        reserve3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="foodId != null" >
+        #{foodId,jdbcType=INTEGER},
+      </if>
+      <if test="foodcount != null" >
+        #{foodcount,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null" >
+        #{reserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve2 != null" >
+        #{reserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve3 != null" >
+        #{reserve3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.Orderdetail" >
+    update orderdetail
+    <set >
+      <if test="orderid != null" >
+        orderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="foodId != null" >
+        food_id = #{foodId,jdbcType=INTEGER},
+      </if>
+      <if test="foodcount != null" >
+        foodCount = #{foodcount,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null" >
+        reserve1 = #{reserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve2 != null" >
+        reserve2 = #{reserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve3 != null" >
+        reserve3 = #{reserve3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.Orderdetail" >
+    update orderdetail
+    set orderId = #{orderid,jdbcType=INTEGER},
+      food_id = #{foodId,jdbcType=INTEGER},
+      foodCount = #{foodcount,jdbcType=INTEGER},
+      reserve1 = #{reserve1,jdbcType=VARCHAR},
+      reserve2 = #{reserve2,jdbcType=VARCHAR},
+      reserve3 = #{reserve3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
