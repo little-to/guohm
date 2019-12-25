@@ -10,12 +10,12 @@
     </bean>
     <!-- 数据库连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
-        <property name="url" value="jdbc:mysql:///mytwo?characterEncoding=utf-8"></property>
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="username" value="root"></property>
-        <property name="password" value="root"></property>
-        <property name="maxActive" value="10"></property>
-        <property name="minIdle" value="5"></property>
+        <property name="url" value="${driver}"></property>
+        <property name="driverClassName" value="${url}"></property>
+        <property name="username" value="${username}"></property>
+        <property name="password" value="${password}"></property>
+        <property name="maxActive" value="${maxActive}"></property>
+        <property name="minIdle" value="${minIdle}"></property>
     </bean>
     <!-- spring 管理mybatis的sqlSessionFactory
         mybatis 和 spring 整合的包由 mybatis提供
