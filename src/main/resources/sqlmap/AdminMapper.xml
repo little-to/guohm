@@ -103,4 +103,11 @@
       reserve3 = #{reserve3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="findByLoginnameAndPassword" parameterType="com.demo.entity.Admin" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admin
+    where name = #{name} and password = #{password}
+  </select>
 </mapper>
