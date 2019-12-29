@@ -28,4 +28,16 @@ public class AdminServiceImplTest implements AdminServiceTest {
     public Admin login(String loginName, String password) {
         return adminMapper.findByLoginnameAndPassword(loginName,password);
     }
+
+    @Override
+    public void setAdmin(Admin admin) {
+        adminMapper.insert(admin);
+    }
+
+    @Override
+    public Admin getAdminById(String id) {
+       return adminMapper.selectByPrimaryKey(id);
+    }
+
+
 }

@@ -10,4 +10,8 @@ public interface AdminServiceTest {
      * @return
      */
     Admin login(String loginName, String password);
+
+    void setAdmin(Admin admin);
+
+    Admin getAdminById(String id);
 }
