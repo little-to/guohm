@@ -18,7 +18,7 @@
 <body>
    <script type="text/javascript">
        function testJson1() {
-           console.log("test1");
+           console.log("${pageContext.request.contextPath}/");
            AjaxRequestByPost("json1",{id: 2},null,function (data) {
                console.log(data);
            });
