@@ -117,7 +117,7 @@ margin-left: 10px;
         </div>
 		<!-- 欢迎用户的文字 -->
 		<div id="Head_1_UserWelcome">
-			<img border="0" width="13" height="14" src="/sys/style/images/user.gif" />
+			<img border="0" width="13" height="14" src="${pageContext.request.contextPath }/sys/style/images/user.gif" />
 			您好，<b>管理员</b>
 		</div>
 		<!-- 一些链接按钮 -->

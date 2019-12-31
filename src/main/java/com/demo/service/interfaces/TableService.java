@@ -13,4 +13,7 @@ public interface TableService {
     void addTable(Dinnertable dinnertable);
 
     Dinnertable searchByTableName(String tableName);
+
+    void delTable(Integer id);
+
 }

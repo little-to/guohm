@@ -31,4 +31,9 @@ public class TableServiceImpl implements TableService {
     public Dinnertable searchByTableName(String tableName) {
         return tableMapper.searchByTableName(tableName);
     }
+
+    @Override
+    public void delTable(Integer id) {
+        this.tableMapper.deleteByPrimaryKey(id);
+    }
 }

@@ -1,10 +1,9 @@
-package com.demo.dao;
+package com.demo.service.interfaces;
 
 import com.demo.entity.Food;
+import com.demo.utils.PageBean;
 
-import java.util.List;
-
-public interface FoodMapper {
+public interface FoodService {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Food record);
@@ -17,7 +16,5 @@ public interface FoodMapper {
 
     int updateByPrimaryKey(Food record);
 
-    List<Food> selectBySQL(String sql);
-
-    int selectBySQLCount(String sql);
+    void queryByPageBean(PageBean<Food> pb);
 }

@@ -9,7 +9,10 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<%@include file="/sys/commons.jsp"%>
+<%--
 <script type="text/javascript" src="${pageContext.request.contextPath }/sys/style/js/jquery.js"></script>
+--%>
 <script type="text/javascript" src="${pageContext.request.contextPath }/sys/style/js/page_common.js"></script>
 <link href="${pageContext.request.contextPath }/sys/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/sys/style/css/index_1.css" />
@@ -22,12 +25,7 @@
 	<div id="TitleArea_Head"></div>
 	<div id="TitleArea_Title">
 		<div id="TitleArea_Title_Content">
-			
-				
-				
-					<img border="0" width="13" height="13" src="${pageContext.request.contextPath }/sys/style/images/title_arrow.gif"/>  添加菜系
-				
-			
+			<img border="0" width="13" height="13" src="${pageContext.request.contextPath }/sys/style/images/title_arrow.gif"/>  添加菜系
 		</div>
     </div>
 	<div id="TitleArea_End"></div>
@@ -37,8 +35,6 @@
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="MainArea">
 	<!-- 表单内容 -->
-	<form action="${pageContext.request.contextPath }/foodType?method=add" method="post">
-	
 		<!-- 本段标题（分段标题） -->
 		<div class="ItemBlock_Title">
         	<img width="4" height="7" border="0" src="${pageContext.request.contextPath }/sys/style/images/item_point.gif"> 菜系信息&nbsp;
@@ -51,8 +47,7 @@
 						<tr>
 							<td width="80px">菜系名称</td>
 							<td>
-								<input type="text" name="name" class="InputStyle" value=""/> *
-								<input type="hidden" name="cid" value="" />
+								<input id="foodTypeName" type="text" name="name" class="InputStyle" value=""/> *
 							</td>
 						</tr>
 					</table>
@@ -65,15 +60,25 @@
 			
 				
 				
-					 <input type="submit" value="添加" class="FunctionButtonInput">
+					 <input type="button" value="添加" onclick="addFoodType()" class="FunctionButtonInput">
 				
 			
-            <a href="javascript:history.go(-1);" class="FunctionButton">返回</a>
+            <a href="${pageContext.request.contextPath }/getAllFoodType" class="FunctionButton">返回</a>
         </div>
-	</form>
 	
 </div>
-
+      <script type="text/javascript">
+		  function addFoodType() {
+			  var foodTypeName = $("#foodTypeName").val();
+			  if(null != foodTypeName){
+			  	AjaxRequestByPost("addFoodType",{typename:foodTypeName},null,function (data) {
+			  		console.log(data);
+					alert("添加成功");
+					$("#foodTypeName").val("");
+				});
+			  }
+		  }
+	  </script>
 
 
 

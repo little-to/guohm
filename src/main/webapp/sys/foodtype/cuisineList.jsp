@@ -10,7 +10,10 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<%@include file="/sys/commons.jsp"%>
+<%--
 <script type="text/javascript" src="${pageContext.request.contextPath }/sys/style/js/jquery.js"></script>
+--%>
 <script type="text/javascript" src="${pageContext.request.contextPath }/sys/style/js/page_common.js"></script>
 <link href="${pageContext.request.contextPath }/sys/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/sys/style/css/index_1.css" />
@@ -29,10 +32,9 @@
 	</div>
 	<!-- 过滤条件 -->
 	<div id="QueryArea">
-		<form action="${pageContext.request.contextPath }/foodType" method="get">
-			<input type="hidden" name="method" value="search">
-			<input type="text" name="keyword" title="请输入菜系名称">
-			<input type="submit" value="搜索">
+		<form action="${pageContext.request.contextPath }/getAllFoodType" method="post">
+			<input type="text" name="id" title="请输入菜系名称">
+			<input type="submit" value="搜索" id="sousuo">
 		</form>
 	</div>
 
@@ -51,11 +53,11 @@
 			<tbody id="TableData">
 				<c:forEach items="${requestScope.list}" var="foodtype" varStatus="vs" >
 					<tr>
-						<td>${vs.count}</td>
-						<td>${foodtype.typeName}</td>
+						<td align="center">${vs.count}</td>
+						<td align="center">${foodtype.typename}</td>
 						<td>
-							<a href="${pageContext.request.contextPath }/foodType?method=show&id=${foodtype.id}" class="FunctionButton">更新</a> 
-							<a href="${pageContext.request.contextPath }/foodType?method=delete&id=${foodtype.id}" class="FunctionButton">删除</a>
+							<a href="${pageContext.request.contextPath }/queryFoodTypeById?id=${foodtype.id}" class="FunctionButton">更新</a>
+							<a href="" onclick="delfoodtype('${foodtype.id}')" class="FunctionButton">删除</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -68,6 +70,19 @@
 				<a href="${pageContext.request.contextPath }/sys/foodtype/saveCuisine.jsp">添加</a>
 			</div>
 		</div>
+		<script type="text/javascript">
+			function delfoodtype(id) {
+				var r=confirm("确定删除吗？");
+				if (r==true){
+					AjaxRequestByPost("delFoodTypeById",id,null,function (data) {
+						console.log(data);
+						alert("删除成功");
+					});
+					$("#sousuo").click();
+				}
+			}
+		</script>
+
 	</div>
 </body>
 </html>

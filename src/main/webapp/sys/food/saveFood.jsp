@@ -50,15 +50,15 @@
 							<td width="80px">菜系</td>
 							<td>
                             <select name="foodType_id" style="width:80px">
-	                            <c:forEach items="${requestScope.foodtypes}" var="type">
-			   						<option value="${type.id}">${type.typeName }</option>
+	                            <c:forEach items="${requestScope.types}" var="type">
+			   						<option value="${type.id}">${type.typename }</option>
 			   					</c:forEach>	   					
                             </select>
                             </td>
 						</tr>
 						<tr>
 							<td width="80px">菜名</td>
-							<td><input type="text" name="foodName" class="InputStyle" value=""/> *</td>
+							<td><input type="text" name="foodname" class="InputStyle" value=""/> *</td>
 						</tr>
 						<tr>
 							<td>价格</td>
@@ -68,7 +68,8 @@
 							<td>会员价格</td>
 							<td><input type="text" name="mprice" class="InputStyle" value=""/> *</td>
 						</tr>
-						
+
+
 						<tr>
 							<td>简介</td>
 							<td><textarea name="remark" class="TextareaStyle"></textarea></td>

@@ -9,7 +9,10 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<%@include file="/sys/commons.jsp"%>
+<%--
 <script type="text/javascript" src="${pageContext.request.contextPath }/sys/style/js/jquery.js"></script>
+--%>
 <script type="text/javascript" src="${pageContext.request.contextPath }/sys/style/js/page_common.js"></script>
 <link href="${pageContext.request.contextPath }/sys/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/sys/style/css/index_1.css" />
@@ -37,8 +40,7 @@
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="MainArea">
 	<!-- 表单内容 -->
-	<form action="${pageContext.request.contextPath }/foodType?method=update" method="post">
-	
+
 		<!-- 本段标题（分段标题） -->
 		<div class="ItemBlock_Title">
         	<img width="4" height="7" border="0" src="${pageContext.request.contextPath }/sys/style/images/item_point.gif"> 菜系信息&nbsp;
@@ -51,8 +53,8 @@
 						<tr>
 							<td width="80px">菜系名称</td>
 							<td>
-								<input type="text" name="typeName" class="InputStyle" value="${requestScope.type.typeName }"/> *
-								<input type="hidden" name="id" value="${requestScope.type.id }" />
+								<input type="text" id="typeName" name="typeName" class="InputStyle" value="${requestScope.type.typename }"/> *
+								<input type="hidden" id="id" name="id" value="${requestScope.type.id }" />
 							</td>
 						</tr>
 					</table>
@@ -64,13 +66,25 @@
 		<div id="InputDetailBar">
 			
 				
-					 <input type="submit" value="修改" class="FunctionButtonInput">
+					 <input type="button" onclick="update()" value="修改" class="FunctionButtonInput">
 				
 				
 			
-            <a href="javascript:history.go(-1);" class="FunctionButton">返回</a>
+            <a href="${pageContext.request.contextPath }/getAllFoodType" class="FunctionButton">返回</a>
         </div>
-	</form>
+	<script type="text/javascript">
+		function update() {
+			var typeName = $("#typeName").val();
+			var id = $("#id").val();
+			if(null != typeName && null != id)
+			{
+				AjaxRequestByPost("updateFoodType",{id:id,typename:typeName},null,function (data) {
+					alert("修改成功");
+					//$("#typeName").val("");
+				})
+			}
+		}
+	</script>
 	
 </div>
 

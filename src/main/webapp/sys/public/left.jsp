@@ -50,7 +50,7 @@ body {
 	  cursor: pointer;
 }
 #Menu .level1 .level1Style {
-  background: url("/sys/style/images/img/menu_btn_bg.gif") no-repeat scroll 0 0 transparent;
+  background: url("${pageContext.request.contextPath }/sys/style/images/img/menu_btn_bg.gif") no-repeat scroll 0 0 transparent;
     height: 23px;
     padding-left: 20px;
     padding-top: 5px;
@@ -95,10 +95,10 @@ body {
                     <a target="right" href="${pageContext.request.contextPath }/queryTable">餐桌管理</a>
 				</li>
                 <li class="level2 level2Style">
-                	<a target="right" href="${pageContext.request.contextPath }/foodType?method=list">菜系管理</a>
+                	<a target="right" href="${pageContext.request.contextPath }/getAllFoodType">菜系管理</a>
 				</li>
                 <li class="level2 level2Style">
-                	<a target="right" href="${pageContext.request.contextPath }/food?method=list">菜品管理</a>
+                	<a target="right" href="${pageContext.request.contextPath }/foodList">菜品管理</a>
 				</li>
                 <li class="level2 level2Style">
                 	<a target="right" href="${pageContext.request.contextPath }/order?method=getOrderList">餐厅订单</a>

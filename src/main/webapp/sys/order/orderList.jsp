@@ -10,8 +10,9 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/sys/style/js/jquery.js"></script>
+	<%@include file="/sys/commons.jsp"%>
+<%--<script type="text/javascript"
+	src="${pageContext.request.contextPath }/sys/style/js/jquery.js"></script>--%>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/sys/style/js/page_common.js"></script>
 <link

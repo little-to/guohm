@@ -36,7 +36,6 @@
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="MainArea">
 	<!-- 表单内容 -->
-	<form action="${pageContext.request.contextPath }/food?method=update" method="post" enctype="multipart/form-data">
 		<!-- 本段标题（分段标题） -->
 		<div class="ItemBlock_Title">
         	<img width="4" height="7" border="0" src="${pageContext.request.contextPath }/sys/style/images/item_point.gif"> 菜品信息&nbsp;
@@ -53,10 +52,10 @@
 			   					 <c:forEach items="${requestScope.foodtypes}" var="type">
 			   					 <c:choose>
 			   					 	<c:when test="${requestScope.type.id==type.id}">
-			   							<option value="${type.id}" selected="selected">${type.typeName }</option>
+			   							<option value="${type.id}" selected="selected">${type.typename }</option>
 			   					 	</c:when>
 			   					 	<c:otherwise>
-			   					 		<option value="${type.id}">${type.typeName }</option>
+			   					 		<option value="${type.id}">${type.typename }</option>
 			   					 	</c:otherwise>
 			   					 </c:choose>
 			   					</c:forEach>	
@@ -65,7 +64,7 @@
 						</tr>
 						<tr>
 							<td width="80px">菜名</td>
-							<td><input type="text" name="foodName" class="InputStyle" value="${requestScope.food.foodName}"/> *</td>
+							<td><input type="text" name="foodName" class="InputStyle" value="${requestScope.food.foodname}"/> *</td>
 						</tr>
 						<tr>
 							<td>价格</td>
@@ -100,14 +99,17 @@
 		<div id="InputDetailBar">
             
 				
-					 <input type="submit" value="修改" class="FunctionButtonInput">
+					 <input type="button" onclick="updateFood()" value="修改" class="FunctionButtonInput">
 				
-				
+		<script type="text/javascript">
+			function updateFood() {
+
+			}
+		</script>
 			
             
             <a href="javascript:history.go(-1);" class="FunctionButton">返回</a>
         </div>
-	</form>
 </div>
 </body>
 </html>

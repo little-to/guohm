@@ -21,11 +21,12 @@
            console.log("${pageContext.request.contextPath}/");
            AjaxRequestByPost("json1",{id: 2},null,function (data) {
                console.log(data);
+               console.log("test");
            });
        }
        function testJson2() {
-           console.log("test1");
            AjaxRequestByPost("json2",1,null,function (data) {
+               console.log("test");
                console.log(data);
            });
        }

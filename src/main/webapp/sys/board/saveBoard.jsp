@@ -10,7 +10,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@include file="/sys/commons.jsp"%>
-<script type="text/javascript" src="${pageContext.request.contextPath }/sys/style/js/jquery.js"></script>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath }/sys/style/js/jquery.js"></script>--%>
 <script type="text/javascript" src="${pageContext.request.contextPath }/sys/style/js/page_common.js"></script>
 <link href="${pageContext.request.contextPath }/sys/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/sys/style/css/index_1.css" />
@@ -59,16 +59,17 @@
 		
 		<!-- 表单操作 -->
 		<div id="InputDetailBar">
-            <input type="button" id="sumbit" value="添加" class="FunctionButtonInput" onclick="addTable">
-            <a href="javascript:history.go(-1);" class="FunctionButton">返回</a>
+            <input type="button" id="sumbit" value="添加" class="FunctionButtonInput" onclick="addTable()">
+            <a href="${pageContext.request.contextPath }/queryTable" class="FunctionButton">返回</a>
         </div>
 	<script type="text/javascript">
 		function addTable() {
 			var tablename = $("#tablename").val();
 			if(null != tablename){
-				AjaxRequestByPost("addTable",tablename,"get",function () {
+				AjaxRequestByPost("addTable",tablename,null,function (data) {
 					alert("添加成功");
-				})
+					$("#tablename").val("");
+				},null,null);
 			}
 		}
 	</script>

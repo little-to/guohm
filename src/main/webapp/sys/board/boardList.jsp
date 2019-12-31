@@ -11,7 +11,6 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@include file="/sys/commons.jsp"%>
-<script type="text/javascript" src="${pageContext.request.contextPath }/sys/style/js/jquery.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/sys/style/js/page_common.js"></script>
 <link href="${pageContext.request.contextPath }/sys/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/sys/style/css/index_1.css" />
@@ -33,7 +32,7 @@
 <div id="QueryArea">
 	<form action="queryTable" method="post">
 		<input type="text" name="tablename" title="请输入餐桌名称">
-		<input type="submit" value="搜索">
+		<input type="submit" value="搜索" id="sousuo">
 	</form>
 </div>
 
@@ -75,7 +74,7 @@
 					<a href="${pageContext.request.contextPath }/table?method=up1&id=${table.id}" class="FunctionButton">预定</a>
 					</c:when>
 					</c:choose>			
-					<a href="${pageContext.request.contextPath }/table?method=delete&id=${table.id}" onClick="return delConfirm();"class="FunctionButton">删除</a>				
+					<a href="" onClick="delTable('${table.id}');"class="FunctionButton">删除</a>
 				</td>
 			</tr>
         </c:forEach>
@@ -88,8 +87,12 @@
 		<div class="FunctionButton"><a href="${pageContext.request.contextPath }/sys/board/saveBoard.jsp">添加</a></div>
     </div>
 	<script type="text/javascript">
-		function yudingOrtui(status,id) {
-
+		function delTable(id) {
+			var r=confirm("确定删除吗？");
+			if (r==true){
+				AjaxRequestByPost("delTable",id,true,null);
+               $("#sousuo").click();
+			}
 		}
 	</script>
 </div>

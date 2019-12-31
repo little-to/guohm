@@ -10,7 +10,10 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<%@include file="/sys/commons.jsp"%>
+<%--
 <script type="text/javascript" src="${pageContext.request.contextPath }/sys/style/js/jquery.js"></script>
+--%>
 <script type="text/javascript" src="${pageContext.request.contextPath }/sys/style/js/page_common.js"></script>
 <link href="${pageContext.request.contextPath }/sys/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/sys/style/css/index_1.css" />
@@ -30,10 +33,9 @@
 
 	<!-- 过滤条件 -->
 	<div id="QueryArea">
-		<form action="${pageContext.request.contextPath }/food" method="get">
-			<input type="hidden" name="method" value="search">
-			<input type="text" name="keyword" title="请输入菜品名称">
-			<input type="submit" value="搜索">
+		<form action="${pageContext.request.contextPath }/foodList" method="post">
+			<input type="text" name="foodname" title="请输入菜品名称">
+			<input type="submit" value="搜索" id="sousuo">
 		</form>
 	</div>
 <!-- 主内容区域（数据列表或表单显示） -->
@@ -55,34 +57,48 @@
 		<c:forEach items="${requestScope.list}" var="food" varStatus="vs">
 			<tr class="TableDetail1">
 				<td>${vs.count }</td>
-				<td>${food.foodName }</td>
+				<td>${food.foodname }</td>
 				<c:forEach items="${ requestScope.types}" var="type" >
-					<c:if test="${food.foodType_id==type.id }">
-						<c:set var="type1" value="${type.typeName}"/>
+					<c:if test="${food.foodtypeId==type.id }">
+						<c:set var="type1" value="${type.typename}"/>
 					</c:if>
 				</c:forEach>
 				<td><c:out value="${type1}"></c:out></td>
 				<td>${food.price}</td>
                 <td>${food.mprice}</td>
 				<td>
-					<a href="${pageContext.request.contextPath}/food?method=show&id=${food.id}"  class="FunctionButton">更新</a>				
-					<a href="${pageContext.request.contextPath}/food?method=delete&id=${food.id}" onClick="return delConfirm();"class="FunctionButton">删除</a>				
+					<a href="${pageContext.request.contextPath}/selectOneFoodById?id=${food.id}"  class="FunctionButton">更新</a>
+					<a href="" onClick="delFoodById(${food.id})"class="FunctionButton">删除</a>
 				</td>
 			</tr>
         
 		</c:forEach>
         </tbody>
     </table>
-	
+
    <!-- 其他功能超链接 -->
 	<div id="TableTail" align="center">
-		<div class="FunctionButton"><a href="${pageContext.request.contextPath }/food?method=findFoodType">添加</a></div>
+		<div class="FunctionButton"><a href="${pageContext.request.contextPath }/selectOneFoodById">添加</a></div>
     	当前${requestScope.pageBean.currentPage }/${requestScope.pageBean.totalPage }页     &nbsp;&nbsp;
-		<a href="${pageContext.request.contextPath }/food?method=list&currentPage=1">首页</a>
-		<a href="${pageContext.request.contextPath }/food?method=list&currentPage=${requestScope.pageBean.currentPage-1}">上一页 </a>
-		<a href="${pageContext.request.contextPath }/food?method=list&currentPage=${requestScope.pageBean.currentPage+1}">下一页 </a>
-		<a href="${pageContext.request.contextPath }/food?method=list&currentPage=${requestScope.pageBean.totalPage}">末页</a>
+		<a href="${pageContext.request.contextPath }/foodList?page=1">首页</a>
+		<a href="${pageContext.request.contextPath }/foodList?page=${requestScope.pageBean.currentPage-1}">上一页 </a>
+		<a href="${pageContext.request.contextPath }/foodList?page=${requestScope.pageBean.currentPage+1}">下一页 </a>
+		<a href="${pageContext.request.contextPath }/foodList?page=${requestScope.pageBean.totalPage}">末页</a>
     </div> 
 </div>
+<script type="text/javascript">
+	function delFoodById(id) {
+		if(null != id && id != ""){
+			var r=confirm("确定删除吗？");
+			if (r==true){
+				AjaxRequestByPost("delFoodById",id,null,function (data) {
+					console.log(data);
+					alert("删除成功");
+				});
+				$("#sousuo").click();
+			}
+		}
+	}
+</script>
 </body>
 </html>
